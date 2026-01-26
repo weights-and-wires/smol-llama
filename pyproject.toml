@@ -1,0 +1,18 @@
+[project]
+name = "smol-llama"
+version = "0.1.0"
+description = "A minimal, from-scratch implementation of a 360M LLaMA-style language model, pre-trained on first 6B tokens of FineWeb."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "flash-attn>=2.8.3",
+    "hf>=1.2.3",
+    "huggingface-hub>=1.2.3",
+    "login>=0.0.6",
+    "numpy>=2.4.0",
+    "torch>=2.9.1",
+    "wandb>=0.23.1",
+]
+
+[tool.uv.extra-build-dependencies]
+flash-attn = ["torch"]
