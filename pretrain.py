@@ -41,10 +41,9 @@ class TrainArgs:
   log_interval: int = 1  # Log to wandb every 'n' steps
 
 
-def evaluate(model, args):
+def evaluate(model, args, num_batches = 20):
   model.eval()
   total_loss = 0.0
-  num_batches = 20
 
   with torch.no_grad():
     for _ in range(num_batches):
@@ -84,10 +83,6 @@ def train():
   model = model.to(torch.bfloat16)
   model.freqs_cos = model.freqs_cos.to(torch.float32)
   model.freqs_sin = model.freqs_sin.to(torch.float32)
-
-  if torch.cuda.is_available():
-    torch.cuda.empty_cache()
-    gc.collect()
 
   try:
     torch._dynamo.config.suppress_errors = True
